@@ -3,11 +3,8 @@ FULL_TIME = 6;
 NO_TIME = 0;
 PER_HOUR_WAGE = 20;
 
-const isPresent = Math.floor(Math.random() * 2);
-
-if (isPresent == 1) {
+function getHour() {
   const x = Math.floor(Math.random() * 3);
-
   let workhour;
 
   switch (x) {
@@ -25,8 +22,14 @@ if (isPresent == 1) {
       workhour = 0;
       break;
   }
-
-  console.log(workhour);
-} else {
-  console.log("Absent");
+  return workhour;
 }
+
+function isPresent() {
+  const x = Math.floor(Math.random() * 2);
+
+    return x===0?true:false;
+}
+
+console.log(getHour());
+console.log(isPresent());
