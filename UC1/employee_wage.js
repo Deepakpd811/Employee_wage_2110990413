@@ -2,6 +2,7 @@ PART_TIME = 4;
 FULL_TIME = 6;
 NO_TIME = 0;
 PER_HOUR_WAGE = 20;
+WORKING_DAY_IN_MONTH = 20;
 
 function getHour() {
   const x = Math.floor(Math.random() * 3);
@@ -28,8 +29,19 @@ function getHour() {
 function isPresent() {
   const x = Math.floor(Math.random() * 2);
 
-    return x===0?true:false;
+  return x === 0 ? true : false;
 }
 
-console.log(getHour());
-console.log(isPresent());
+function calculateMonthlyWage() {
+  let totalMonthlyWage = 0;
+
+  for (let i = 0; i < WORKING_DAY_IN_MONTH; i++) {
+    if (isPresent) {
+      let workingHour = getHour();
+      totalMonthlyWage += workingHour * PER_HOUR_WAGE;
+    }
+  }
+  return totalMonthlyWage;
+}
+
+console.log(calculateMonthlyWage());
