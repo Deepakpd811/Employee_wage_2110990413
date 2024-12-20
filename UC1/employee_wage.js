@@ -36,7 +36,8 @@ function calculateMonthlyWage() {
   let totalMonthlyWage = 0;
 
   for (let i = 0; i < WORKING_DAY_IN_MONTH; i++) {
-    if (isPresent) {
+    let presence = isPresent();
+    if (presence) {
       let workingHour = getHour();
       totalMonthlyWage += workingHour * PER_HOUR_WAGE;
     }
