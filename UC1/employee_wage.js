@@ -1,8 +1,9 @@
 PART_TIME = 4;
-FULL_TIME = 6;
+FULL_TIME = 8;
 NO_TIME = 0;
 PER_HOUR_WAGE = 20;
 WORKING_DAY_IN_MONTH = 20;
+MAX_WORKING_HOUR_IN_MONTH = 160;
 
 function getHour() {
   const x = Math.floor(Math.random() * 3);
@@ -29,20 +30,34 @@ function getHour() {
 function isPresent() {
   const x = Math.floor(Math.random() * 2);
 
-  return x === 0 ? true : false;
+  return x === 0 ? "Absent" : "Present";
 }
 
-function calculateMonthlyWage() {
-  let totalMonthlyWage = 0;
+function calculateWageTill() {
+  let totalHour = 0;
+  let day = 1;
+  let totalWage = 0;
 
-  for (let i = 0; i < WORKING_DAY_IN_MONTH; i++) {
-    let presence = isPresent();
-    if (presence) {
-      let workingHour = getHour();
-      totalMonthlyWage += workingHour * PER_HOUR_WAGE;
+  while (totalHour < MAX_WORKING_HOUR_IN_MONTH && day <= WORKING_DAY_IN_MONTH) {
+    let workingHour;
+    let presence = isPresent()
+    if (presence==="Present") {
+      workingHour = getHour();
+      totalWage += workingHour * PER_HOUR_WAGE;
+      totalHour += workingHour;
+      console.log(
+        `in Day ${day} person is present and workingHour is ${workingHour} and wage till day is ${totalWage}  `
+      );
+    } else {
+      console.log(
+        `in Day ${day} person is Absent and workingHour is ${workingHour} and wage till day is ${totalWage}  `
+      );
     }
+    day++;
   }
-  return totalMonthlyWage;
+  console.log("total working hour in month " + totalHour);
+  console.log("Day " + day);
+  return totalWage;
 }
 
-console.log(calculateMonthlyWage());
+console.log(calculateWageTill());
